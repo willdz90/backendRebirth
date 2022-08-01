@@ -13,6 +13,7 @@ const cors = require("cors");
 const router = Router();
 router.use(cors());
 
+router.use("/", petsRoute)
 // router.use("/owners", ownersRoute);
 router.use("/pets", petsRoute);
 router.use("/login", loginRoute);

@@ -1,12 +1,12 @@
 const { Router } = require("express");
-const loginRoute = require("../controllers/login.js");
-const petsRoute = require("../controllers/pets.js");
-const userRoute = require("../controllers/user.js");
-const transporterRoute = require("../controllers/nodeMailer.js");
+const loginRoute = require("./login.js");
+const petsRoute = require("./pets.js");
+const userRoute = require("./user.js");
+const transporterRoute = require("./nodeMailer.js");
 //const chatRoute = require("./chat.js");
-const adoption = require("../controllers/adoption.js");
-const successStoriesRoute = require("../controllers/successStories.js");
-const donationsRoute = require("../controllers/donations.js");
+const adoption = require("./adoption.js");
+const successStoriesRoute = require("./successStories.js");
+const donationsRoute = require("./donations.js");
 // const adminRoute = require("./admin.js");
 const cors = require("cors");
  

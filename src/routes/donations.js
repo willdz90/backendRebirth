@@ -11,9 +11,7 @@ const {
   });
 
 router.post("/", async (req, res) =>{
-  console.log('req.body', req.body)
     var {donacion} =req.body;
-    console.log('donacion', donacion)
  
     let preference = {  
         items: [
@@ -42,7 +40,7 @@ router.post("/", async (req, res) =>{
     res.send({ id: global.id, init_point: global.init_point })//lo que devolvemos al front
 })
 .catch(function(error){
-    console.log(error)
+    res.send(error)
 });
   
 });

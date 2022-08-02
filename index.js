@@ -23,7 +23,7 @@ const { getPets } = require('./src/tools/preCharge.js');
 const { PORT } = process.env;
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false }).then(async () => {
   await getPets()
   server.listen(PORT, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console

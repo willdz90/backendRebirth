@@ -25,7 +25,6 @@ const sendEmailConfirmation = (userInformation) => {
     if (error) {
       res.status(500).send(error.message);
     } else {
-      console.log("mail sent successfully", body);
       res.status(200).send(body);
     }
   });

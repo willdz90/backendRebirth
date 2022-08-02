@@ -28,8 +28,7 @@ const getPets = async () => {
       return getPets;
     }
     catch (error) {
-  } 
-    console.log("Error" + error);
+    } 
   }
 
 module.exports = {

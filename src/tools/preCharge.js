@@ -1,6 +1,4 @@
 const pets =  require("./pets.json");
-
-
 const {Pets} = require("../db");
 
 const getPets = async () => {
@@ -28,7 +26,8 @@ const getPets = async () => {
       return getPets;
     }
     catch (error) {
-    } 
+  } 
+    console.log("Error" + error);
   }
 
 module.exports = {

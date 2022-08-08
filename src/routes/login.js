@@ -1,10 +1,9 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const { Router } = require("express");
 const router = Router();
+const bcrypt = require('bcrypt');
 const { User } = require('../db');
-const { SECRET_KEYWORD } = process.env;
-const postUser = require('./user.js');
+const { createToken } = require('../tools/loginSession');
+const { infoToPost } = require('../tools/loginSession');
 
 
 function verifyUser(userData, password){
@@ -25,26 +24,38 @@ function verifyUser(userData, password){
     return userForToken;
 }
 
-router.post("/" , async (req, res) => {
+router.post("/" , async (req, res, next) => {
 
     const { body } = req;
     const { userName, password } = body;
-    const { googleId, name } = body;
-
-    console.log(body)
+    const { googleId, email } = body;
 
     if(googleId){
 
-        const user = await User.findOne({ where : { userName : name.replace(" ", "_") } });
+        const user = await User.findOne({ where : { mail : email } });
 
-        console.log('!user', !user)
-        if(!user){
-            console.log('postUser', postUser)
-            router.use("/", postUser)
+        if(user){
+            res.send(createToken(user))
         }
 
-    } else {
+        if(!user){
+            try {
+                await infoToPost(req)
 
+                let userCreated = await User.findOne({ where : { mail : email}})
+
+                if(userCreated){
+                    res.status(201).send(createToken(userCreated))
+                }
+            } catch (error) {
+                next(error);
+            }
+        } 
+
+
+    } 
+    
+    if(userName && password){
         const user = await User.findOne({ where: { userName: userName } });
 
         const passwordCorrect = user === null  //true or false
@@ -59,14 +70,7 @@ router.post("/" , async (req, res) => {
         }
     
         if(passwordCorrect){
-            let userToken = verifyUser(user["dataValues"], passwordCorrect);
-    
-            const token = jwt.sign(userToken, SECRET_KEYWORD)
-        
-            res.send({
-                userToken,
-                token
-            })
+            res.send(createToken(user))
         }
     }
 })

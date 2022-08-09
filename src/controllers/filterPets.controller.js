@@ -43,7 +43,7 @@ exports.filterPets = (req, res) => {
 
   //NORMAL QUERIES
   var nameSearch = name ? { name: { [Op.substring] : `${name}` } } : null;
-  var ageSearch = age !== "All" ? [['age',`${age}`]] : null;
+  var ageSearch = age ? [['age',`${age}`]] : null;
   // var ageSearch = age ? { age: { [Op.eq] : { [Op.any]: `${age}` }} } : null;
   var locationSearch = location ? { location: { [Op.iLike] : { [Op.any]: `${location}` }} } : null;
   var raceSearch = race ? { race: { [Op.like]: `${race}` } } : null;

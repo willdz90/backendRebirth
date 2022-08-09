@@ -24,9 +24,9 @@ router.post("/", async (req, res) =>{
       ],
          
         back_urls: {
-          "success": "https://rebirth-app-backend.herokuapp.com/donations/pagos",
-          "failure": "https://frontend-rebirth.vercel.app/home",
-          "pending": "https://frontend-rebirth.vercel.app/home"
+          "success": "http://localhost:3001/donations/pagos",
+          "failure": "http://localhost:3000/home",
+          "pending": "http://localhost:3000/home"
       },
       auto_return: "approved",
 
@@ -47,7 +47,7 @@ router.post("/", async (req, res) =>{
 });
 
 router.get('/pagos', function(req, res) {
-    return res.redirect("https://frontend-rebirth.vercel.app/")
+    return res.redirect("http://localhost:3000/")
 })
 
 module.exports = router;

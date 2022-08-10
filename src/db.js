@@ -13,12 +13,12 @@ const sequelize = new Sequelize(
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
     timestamps: false,
-    // dialectOptions: {
-    //   ssl: {
-    //     required: true,
-    //     rejectUnauthorized: false,
-    //   },
-    // },
+    dialectOptions: {
+      ssl: {
+        required: true,
+        rejectUnauthorized: false,
+      },
+    },
   }
 );
 const basename = path.basename(__filename);

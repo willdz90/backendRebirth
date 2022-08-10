@@ -1,8 +1,5 @@
 const nodemailer = require("nodemailer");
-
-const sendEmailConfirmation = (userInformation) => {
-  const email = userInformation.mail;
-  const body = userInformation;
+const sendEmailUserRestored = (mail) => {
 
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -13,23 +10,21 @@ const sendEmailConfirmation = (userInformation) => {
       pass: "iqmipujwctqgxvnw", 
     },
   });
-
   let mailOption = {
     from: " 'Rebirth.App 🐾' <petsrebirth@gmail.com>",
-    to: email,
-    subject: "Rebirth.App 🐾",
-    text: "Gracias por registrarte en Rebirth!",
+    to: mail,
+    subject: "Active",
+    text: "Su cuenta fue habilitada !!",
   };
-
   transporter.sendMail(mailOption, (error, info) => {
     if (error) {
       return error.message;
     } else {
-      return body.mail
+      return info
     }
   });
 };
 
 module.exports = {
-  sendEmailConfirmation,
+  sendEmailUserRestored,
 };

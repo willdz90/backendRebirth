@@ -17,14 +17,13 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
-const { getPets } = require('./src/tools/preCharge.js');
-const { getAdmin } = require('./src/tools/preChargeAdmin.js')
-const { PORT } = process.env;
+const server = require("./src/app.js");
+const { conn } = require("./src/db.js");
+const { getPets } = require("./src/tools/preCharge.js");
+const { getAdmin } = require("./src/tools/preChargeAdmin.js");
+const { POST } = process.env;
 
-// Syncing all the models at once. 
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false }).then(async () => {
   await getAdmin();
   await getPets();
   server.listen(PORT, () => {

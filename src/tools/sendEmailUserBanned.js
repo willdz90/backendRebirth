@@ -1,8 +1,5 @@
 const nodemailer = require("nodemailer");
-
-const sendEmailConfirmation = (userInformation) => {
-  const email = userInformation.mail;
-  const body = userInformation;
+const sendEmailUserBanned = (mail) => {
 
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -13,23 +10,21 @@ const sendEmailConfirmation = (userInformation) => {
       pass: "iqmipujwctqgxvnw", 
     },
   });
-
   let mailOption = {
     from: " 'Rebirth.App 🐾' <petsrebirth@gmail.com>",
-    to: email,
-    subject: "Rebirth.App 🐾",
-    text: "Gracias por registrarte en Rebirth!",
+    to: mail,
+    subject: "Banned",
+    text: "Su cuenta fue deshabilitada por actividad inusual!!😐",
   };
-
   transporter.sendMail(mailOption, (error, info) => {
     if (error) {
       return error.message;
     } else {
-      return body.mail
+      return info
     }
   });
 };
 
 module.exports = {
-  sendEmailConfirmation,
+  sendEmailUserBanned,
 };

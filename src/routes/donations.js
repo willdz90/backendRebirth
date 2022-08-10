@@ -4,7 +4,8 @@ const mercadopago = require("mercadopago");
 const {
     MP_PUBLIC_KEY, 
     MP_ACCESS_TOKEN,
-    SERVER
+    REDIRECT_BACK,
+    REDIRECT_FRONT
   } = process.env;
 
   mercadopago.configure({
@@ -25,9 +26,9 @@ router.post("/", async (req, res) =>{
       ],
          
         back_urls: {
-          "success": `${SERVER}/donations/pagos`,
-          "failure": `${SERVER}/home`,
-          "pending": `${SERVER}/home`
+          "success": `${REDIRECT_BACK}/donations/pagos`,
+          "failure": `${REDIRECT_FRONT}/home`,
+          "pending": `${REDIRECT_FRONT}/home`
       },
       auto_return: "approved",
 
@@ -48,7 +49,7 @@ router.post("/", async (req, res) =>{
 });
 
 router.get('/pagos', function(req, res) {
-    return res.redirect("http://localhost:3000/")
+    return res.redirect(`${REDIRECT_FRONT}/home`)
 })
 
 module.exports = router;

@@ -23,7 +23,7 @@ const { getPets } = require("./src/tools/preCharge.js");
 const { getAdmin } = require("./src/tools/preChargeAdmin.js");
 const { PORT } = process.env;
 
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false }).then(async () => {
   await getAdmin();
   await getPets();
   server.listen(PORT, () => {

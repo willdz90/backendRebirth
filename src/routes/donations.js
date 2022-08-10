@@ -3,7 +3,8 @@ const router = Router();
 const mercadopago = require("mercadopago");
 const {
     MP_PUBLIC_KEY, 
-    MP_ACCESS_TOKEN
+    MP_ACCESS_TOKEN,
+    SERVER
   } = process.env;
 
   mercadopago.configure({
@@ -24,9 +25,9 @@ router.post("/", async (req, res) =>{
       ],
          
         back_urls: {
-          "success": "http://localhost:3001/donations/pagos",
-          "failure": "http://localhost:3000/home",
-          "pending": "http://localhost:3000/home"
+          "success": `${SERVER}/donations/pagos`,
+          "failure": `${SERVER}/home`,
+          "pending": `${SERVER}/home`
       },
       auto_return: "approved",
 

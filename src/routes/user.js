@@ -122,7 +122,7 @@ router.post("/", async (req, res, next) => {
     let userInformation = await getUserInfo(req);
     await User.create(userInformation);
 
-    // sendEmailConfirmation(userInformation);
+    sendEmailConfirmation(userInformation);
     res
       .status(201)
       .send(`El usuario ${userInformation.name} fue creado con exito`);

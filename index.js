@@ -16,7 +16,7 @@ const { getTestimonials } = require("./src/tools/preChargeTestimonials.js");
 
 const { PORT } = process.env;
 
-conn.sync({ force: false }).then(async () => {
+conn.sync({ force: true }).then(async () => {
   await getTestimonials();
   await getAdmin();
   await getPets();
